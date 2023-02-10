@@ -4,43 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" th:href="@{/static/css/main.css}">
     <title>Университет. Регистрация</title>
 </head>
 <body>
-    <h1 class="title">Регистрация</h1>
-    <a class="signin_btn" href="/">Вход</a>
+<h1 class="title">Регистрация</h1>
+<a class="signin_btn" href="/">Вход</a>
 
-    <form class="form" action="">
-        <div class="form-elem">
-            <label for="login">Придумайте логин</label>
-            <input type="text" id="login">
-        </div> 
-        <div class="form-elem">
-            <label for="password">Придумайте пароль</label>
-            <input type="password" id="password">
-        </div> 
-        <div class="form-elem">
-            <label for="double_password">Повторите пароль</label>
-            <input type="password" id="double_password">
-        </div> 
-        <div class="form-elem">
-            <label for="name">ФИО</label>
-            <input type="text" id="name">
-        </div>
-        <div class="form-elem">
-            <label for="date">Дата рождения</label>
-            <input type="date" id="date">
-        </div>
-        <div class="form-elem">
-            <label for="role">Кем вы являтесь?</label>
-            <select id="role">
-                <option>Ученик</option>
-                <option>Преподаватель</option>
-              </select>
-        </div>
-
-        <button class="form-button">Зарегестрироваться</button>
-    </form>
+<form class="form" th:method="POST"  th:action="@{/}" th:object="${person}">
+    <div class="form-elem">
+        <label for="login">Придумайте логин</label>
+        <input type="text" id="login" th:field="*{login}">
+    </div>
+    <div class="form-elem">
+        <label for="password">Придумайте пароль</label>
+        <input type="password" id="password" th:field="*{password}">
+    </div>
+<!--    <div class="form-elem">-->
+<!--        <label for="double_password">Повторите пароль</label>-->
+<!--        <input type="password" id="double_password">-->
+<!--    </div>-->
+    <div class="form-elem">
+        <label for="name">ФИО</label>
+        <input type="text" id="name" th:field="*{fullName}">
+    </div>
+    <div class="form-elem">
+        <label for="date">Дата рождения</label>
+        <input type="date" id="date" th:field="*{dateOfBirth}">
+    </div>
+    <div class="form-elem">
+        <label for="role">Кем вы являтесь?</label>
+        <select th:field="*{role}" id="role">
+            <option th:value="student" th:text="Ученик"></option>
+            <option th:value="teacher" th:text="Преподаватель"></option>
+        </select>
+    </div>
+    <div class="form-elem hide" id="discipline_container">
+        <label for="discipline">Выберите дисциплину которую вы преподаёте</label>
+        <select th:field="*{subjectArea}" id="discipline">
+            <option th:value="physics" th:text="Физика"></option>
+            <option th:value="chemistry" th:text="Химия"></option>
+            <option th:value="astronomy" th:text="Астрономия"></option>
+            <option th:value="mathematics" th:text="Математика"></option>
+            <option th:value="languages">Иностранные языки</option>
+        </select>
+    </div>
+    <button type="submit" class="form-button">Зарегестрироваться</button>
+</form>
+<script th:src="@{/static/js/script.js}"></script>
 </body>
 </html>

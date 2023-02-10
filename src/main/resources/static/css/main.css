@@ -27,10 +27,10 @@ a {
 .form{
     border: 1px solid rgb(182, 179, 179);
     padding: 30px;
-    max-width: 400px;
+    max-width: 500px;
     display: block;
     margin: 0 auto;
-} 
+}
 
 .authorization{
     max-width: 280px;
@@ -53,4 +53,8 @@ a {
     display: flex;
     justify-content: space-between;
     grid-gap: 10px;
+}
+
+.hide{
+    display: none;
 }
